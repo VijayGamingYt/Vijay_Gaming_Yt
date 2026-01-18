@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vijay's Solo Leveling HUD</title>
+<style>
+body { background-color: #0b0c10; color: #c5c6c7; font-family: 'Arial', sans-serif; margin:0; padding:0;}
+.container { width:90%; max-width:1000px; margin:auto; padding:20px;}
+.header { display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #1f2833; padding-bottom:10px; margin-bottom:20px;}
+.header h1 { color:#66fcf1;}
+.progress-bar { background-color:#1f2833; border-radius:10px; overflow:hidden; width:200px; height:20px;}
+.progress { height:100%; width:0%; background-color:#45a29e; transition: width 0.5s;}
+.stats, .missions { display:flex; flex-wrap:wrap; gap:20px; margin-bottom:20px;}
+.card { background-color:#1f2833; padding:15px; border-radius:10px; flex:1; min-width:200px;}
+.card h3 { margin-top:0; color:#66fcf1;}
+.avatar { width:150px; height:150px; border-radius:50%; background-color:#c5c6c7; margin:auto;}
+button { padding:10px 15px; background-color:#45a29e; border:none; color:#0b0c10; font-weight:bold; border-radius:5px; cursor:pointer;}
+button:hover { background-color:#66fcf1;}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>Vijay</h1>
+<div>Level: <span id="level">0</span>
+<div class="progress-bar"><div class="progress" id="exp-bar"></div></div>EXP: <span id="exp">0%</span></div>
+</div>
+<div class="stats">
+<div class="card">
+<h3>Stats</h3>
+<p>Strength: <span id="strength">0</span></p>
+<p>Agility: <span id="agility">0</span></p>
+<p>Intelligence: <span id="intelligence">0</span></p>
+<p>Stamina: <span id="stamina">0</span></p>
+<p>HP: <span id="hp">0</span></p>
+<p>MP: <span id="mp">0</span></p>
+</div>
+<div class="card">
+<h3>Avatar</h3>
+<div class="avatar" id="avatar"></div>
+</div>
+</div>
+<div class="missions">
+<div class="card">
+<h3>Missions (Calisthenics)</h3>
+<ul id="mission-list">
+<li>Day 1: Push-ups 3 sets</li>
+<li>Day 1: Squats 3 sets</li>
+<li>Day 1: Plank 2 sets</li>
+</ul>
+<button onclick="completeMission()">Complete Mission</button>
+</div>
+</div>
+</div>
+<script>
+let level = 0;
+let exp = 0;
+let expPerMission = 20;
+function completeMission() {
+exp += expPerMission;
+if(exp>=100){level++;exp=exp-100;
+document.getElementById('strength').textContent=parseInt(document.getElementById('strength').textContent)+2;
+document.getElementById('agility').textContent=parseInt(document.getElementById('agility').textContent)+2;
+document.getElementById('stamina').textContent=parseInt(document.getElementById('stamina').textContent)+2;
+document.getElementById('hp').textContent=parseInt(document.getElementById('hp').textContent)+5;
+document.getElementById('mp').textContent=parseInt(document.getElementById('mp').textContent)+3;}
+document.getElementById('level').textContent=level;
+document.getElementById('exp').textContent=exp+'%';
+document.getElementById('exp-bar').style.width=exp+'%';
+}
+</script>
+</body>
+</html>
